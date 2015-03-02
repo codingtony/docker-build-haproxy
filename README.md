@@ -10,7 +10,7 @@ It uses a [Gist that I wrote](https://gist.github.com/codingtony/24fab751202dff4
 I think that using Docker for creating an image to build software is very interesting since it is small, fast, reproductible and you can build without messing with your own system (installing build dependencies).
 
 
-This build is "semi-static", and it compiles against pcre 8.36 and libressl 2.1.1
+This build is "semi-static", and it compiles against libressl 2.1.3 and libpcre 8.36
 ```
         linux-vdso.so.1 =>  (0x00007fff209fe000)
         libcrypt.so.1 => /lib64/libcrypt.so.1 (0x00007ff5be82e000)
