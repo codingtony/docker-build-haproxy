@@ -1,7 +1,7 @@
 docker-build-haproxy
 ====================
 
-CentOS 6 based image to build HAProxy with LibreSSL
+CentOS 6 based image that contains a build of HAProxy with LibreSSL
 
 This is a basic image containing everything to build HAProxy 1.5.x from source.
 
@@ -41,8 +41,9 @@ docker pull codingtony/build-haproxy
 ```
 docker run --rm -ti codingtony/build-haproxy
 ```
+haproxy is already built in /usr/local/sbin/haproxy
 
-Once in the shell, simply do :
+However, if you want to rebuild it, once in the shell, simply do :
 ```
 build.sh
 ```
