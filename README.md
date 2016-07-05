@@ -10,7 +10,7 @@ It uses a [Gist that I wrote](https://gist.github.com/codingtony/24fab751202dff4
 I think that using Docker for creating an image to build software is very interesting since it is small, fast, reproductible and you can build without messing with your own system (installing build dependencies).
 
 
-This build is "semi-static", and it compiles against pcre 8.37 and libressl 2.2.3
+This build is "semi-static", and it compiles against pcre and libressl
 ```
         linux-vdso.so.1 =>  (0x00007fff209fe000)
         libcrypt.so.1 => /lib64/libcrypt.so.1 (0x00007ff5be82e000)
@@ -31,24 +31,26 @@ git clone https://github.com/codingtony/docker-build-haproxy.git
 cd docker-build-haproxy
 docker build -t codingtony/build-haproxy .
 ```
+haproxy will be built in /usr/local/sbin/haproxy
+
+**To get HAProxy executable in your current directory**
+```
+docker cp haproxy:/usr/local/sbin/haproxy . && docker rm haproxy
+```
 
 You can also pull it from the repo
 ```
 docker pull codingtony/build-haproxy
 ```
 
-**Run and build haproxy**
+**Build haproxy by yourself**
 ```
 docker run --rm -ti codingtony/build-haproxy
-```
-haproxy is already built in /usr/local/sbin/haproxy
-
-However, if you want to rebuild it, once in the shell, simply do :
-```
 build.sh
 ```
 
 This will start the build, the compiled haproxy will be in ```/usr/local/sbin/haproxy```
+
 
 Enjoy!
 
