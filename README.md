@@ -3,14 +3,14 @@ docker-build-haproxy
 
 CentOS 6 based image that contains a build of HAProxy with LibreSSL
 
-This is a basic image containing everything to build HAProxy 1.5.x from source.
+This is a basic image containing everything to build HAProxy 1.6.x from source.
 
 It uses a [Gist that I wrote](https://gist.github.com/codingtony/24fab751202dff4d547c)
 
 I think that using Docker for creating an image to build software is very interesting since it is small, fast, reproductible and you can build without messing with your own system (installing build dependencies).
 
 
-This build is "semi-static", and it compiles against pcre 8.37 and libressl 2.2.3
+This build is "semi-static", and it compiles against pcre 8.39, libressl 2.5.0, ncurses 6.0, readline 6.3 and lua 5.3.0
 ```
         linux-vdso.so.1 =>  (0x00007fff209fe000)
         libcrypt.so.1 => /lib64/libcrypt.so.1 (0x00007ff5be82e000)
@@ -38,21 +38,14 @@ docker pull codingtony/build-haproxy
 ```
 
 **Run and build haproxy**
-```
-docker run --rm -ti codingtony/build-haproxy
-```
-haproxy is already built in /usr/local/sbin/haproxy
 
-However, if you want to rebuild it, once in the shell, simply do :
+This will start the build, the compiled haproxy will be in ```$PWD/dist/usr/local/sbin/haproxy```
 ```
-build.sh
+mkdir dist
+# this will create files as root.
+docker run --rm -v $PWD/dist:/tmp/haproxy codingtony/build-haproxy
+
+# if you don't want this you can try this :
+docker run --rm -u $(id -u) -v /etc/passwd:/etc/passwd:ro -v $PWD/dist:/tmp/haproxy codingtony/build-haproxy
 ```
-
-This will start the build, the compiled haproxy will be in ```/usr/local/sbin/haproxy```
-
 Enjoy!
-
-
-
-
-
