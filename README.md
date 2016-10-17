@@ -31,21 +31,23 @@ git clone https://github.com/codingtony/docker-build-haproxy.git
 cd docker-build-haproxy
 docker build -t codingtony/build-haproxy .
 ```
-
 You can also pull it from the repo
+
 ```
 docker pull codingtony/build-haproxy
 ```
 
-**Run and build haproxy**
+**Build haproxy**
 
-This will start the build, the compiled haproxy will be in ```$PWD/dist/usr/local/sbin/haproxy```
 ```
 mkdir dist
 # this will create files as root.
 docker run --rm -v $PWD/dist:/tmp/haproxy codingtony/build-haproxy
-
 # if you don't want this you can try this :
 docker run --rm -u $(id -u) -v /etc/passwd:/etc/passwd:ro -v $PWD/dist:/tmp/haproxy codingtony/build-haproxy
 ```
+=======
+This will start the build, the compiled haproxy will be in ```$PWD/dist/usr/local/sbin/haproxy```
+
+
 Enjoy!
